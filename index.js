@@ -103,6 +103,10 @@ const db = [
       "rating": 7
     }
 ]
+app.get('/', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.json(db)
+});
 
 app.get('/pizzas', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
