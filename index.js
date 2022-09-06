@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const dotenv = require('dotenv');
+dotenv.config()
+let port = process.env.PORT || 3000
 const db = [
     {
       "id": 0,
@@ -110,6 +112,6 @@ app.get('/', (req, res) => {
 });
 
 
-app.listen(3000, (err, res) => {
+app.listen(port, (err, res) => {
     console.log('Server Started');
 });
