@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-app.use(cors())
+
 const db = [
     {
       "id": 0,
@@ -105,7 +105,7 @@ const db = [
     }
 ]
 app.get('/', (req, res) => {
-    res.json(db)
+    res.send(JSON.stringify(db))
     console.log('ответ получен');
 });
 
