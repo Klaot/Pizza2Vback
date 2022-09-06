@@ -106,6 +106,7 @@ const db = [
       "rating": 7
     }
 ]
+app.use(cors())
 app.get('/', (req, res) => {
     res.send(JSON.stringify(db))
     console.log('ответ получен');
