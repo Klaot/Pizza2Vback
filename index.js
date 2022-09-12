@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const dotenv = require('dotenv');
 dotenv.config()
-let port = process.env.PORT || 3001
+let port = process.env.PORT || 3000
 
 const db = [
     {
