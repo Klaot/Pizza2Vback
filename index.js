@@ -2,10 +2,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 const dotenv = require('dotenv');
 dotenv.config()
-let port = process.env.PORT || 3000
+let port = process.env.PORT || 3001
 
 const db = [
     {
@@ -111,40 +110,48 @@ const db = [
 ]
 
 app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Сортировка пицц
 const setCategory  = (i) => {
   return db.filter(item => item.category === i);
 }
 
-app.get('/1', (req, res) => {
-   let sort = setCategory(1)
-   res.send(JSON.stringify(sort))
-})
+// app.get('/1', (req, res) => {
+//    let sort = setCategory(1)
+//    res.send(JSON.stringify(sort))
+// })
 
-app.get('/2', (req, res) => {
-  let sort = setCategory(2)
-  res.send(JSON.stringify(sort))
-})
+// app.get('/2', (req, res) => {
+//   let sort = setCategory(2)
+//   res.send(JSON.stringify(sort))
+// })
 
-app.get('/3', (req, res) => {
-  let sort = setCategory(3)
-  res.send(JSON.stringify(sort))
-})
+// app.get('/3', (req, res) => {
+//   let sort = setCategory(3)
+//   res.send(JSON.stringify(sort))
+// })
 
-app.get('/4', (req, res) => {
-  let sort = setCategory(4)
-  res.send(JSON.stringify(sort))
-})
+// app.get('/4', (req, res) => {
+//   let sort = setCategory(4)
+//   res.send(JSON.stringify(sort))
+// })
 
-app.get('/5', (req, res) => {
-  let sort = setCategory(5)
-  res.send(JSON.stringify(sort))
-})
+// app.get('/5', (req, res) => {
+//   let sort = setCategory(5)
+//   res.send(JSON.stringify(sort))
+// })
 
 
-app.get('/', (req, res) => {
-    res.send(JSON.stringify(db))
+// app.get('/', (req, res) => {
+//     res.send(JSON.stringify(db))
+// });
+
+app.post('/', (req, res) => {
+    console.log(req.body.id);
+    let sort = req.body.id === 0 ? db : setCategory(req.body.id);
+    res.send(JSON.stringify(sort));
 });
 
 
