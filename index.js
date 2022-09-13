@@ -118,40 +118,9 @@ const setCategory  = (i) => {
   return db.filter(item => item.category === i);
 }
 
-// app.get('/1', (req, res) => {
-//    let sort = setCategory(1)
-//    res.send(JSON.stringify(sort))
-// })
-
-// app.get('/2', (req, res) => {
-//   let sort = setCategory(2)
-//   res.send(JSON.stringify(sort))
-// })
-
-// app.get('/3', (req, res) => {
-//   let sort = setCategory(3)
-//   res.send(JSON.stringify(sort))
-// })
-
-// app.get('/4', (req, res) => {
-//   let sort = setCategory(4)
-//   res.send(JSON.stringify(sort))
-// })
-
-// app.get('/5', (req, res) => {
-//   let sort = setCategory(5)
-//   res.send(JSON.stringify(sort))
-// })
-
-
-// app.get('/', (req, res) => {
-//     res.send(JSON.stringify(db))
-// });
-
-app.post('/', (req, res) => {
-    console.log(req.body.id);
-    let sort = req.body.id === 0 ? db : setCategory(req.body.id);
-    res.send(JSON.stringify(sort));
+app.get('/:id', (req, res) => {
+    let sort = req.params.id === "0" ? db : setCategory(+req.params.id);
+    res.send(JSON.stringify(sort))
 });
 
 
