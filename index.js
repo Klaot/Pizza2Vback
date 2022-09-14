@@ -113,14 +113,42 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//Сортировка пицц
+//Фильтрация пицц
 const setCategory  = (i) => {
   return db.filter(item => item.category === i);
 }
+//Сортировка пицц
+const setSort = (idSort, filterPizzas) => {
+  let sortedPizzas;
+   switch(idSort) {
+      case 0: 
+        sortedPizzas = filterPizzas.sort((a,b) => {
+        return a.rating - b.rating;
+      });
+      break;
+      case 1: 
+        sortedPizzas = filterPizzas.sort((a,b) => {
+        return a.price - b.price;
+      });
+      break;
+      case 2: 
+        sortedPizzas = filterPizzas.sort((a,b) => {
+        return a.title.localeCompare(b.title); 
+      });
+      break;
+      default:
+        sortedPizzas = filterPizzas;
+      break;
+  }
+  return sortedPizzas;
+};
+
 
 app.get('/:id', (req, res) => {
-    let sort = req.params.id === "0" ? db : setCategory(+req.params.id);
-    res.send(JSON.stringify(sort))
+    let sortId = +req.query.sortType;
+    let sortedPizzas = req.params.id === "0" ? db : setCategory(+req.params.id);
+    let newSortedPizzas = setSort(sortId,sortedPizzas);
+    res.send(JSON.stringify(newSortedPizzas))
 });
 
 
