@@ -8,9 +8,9 @@ const setSort = require('./function/sort');
 const setCategory = require('./function/category');
 const searchPizza = require('./function/search');
 
+
 dotenv.config();
 let port = process.env.PORT || 3001
-
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
