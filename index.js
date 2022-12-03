@@ -12,10 +12,11 @@ const searchPizza = require('./function/search');
 dotenv.config();
 let port = process.env.PORT || 3001
 app.use(cors());
+app.options('*', cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/:id',  (req, res) => {
+app.get('/:id', cors() ,(req, res) => {
     let sortId = +req.query.sortType;
     let sortedPizzas = req.params.id === "0" ? db : setCategory(+req.params.id);
     let newSortedPizzas = setSort(sortId,sortedPizzas);
