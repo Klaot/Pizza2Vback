@@ -8,7 +8,6 @@ const setSort = require('./function/sort');
 const setCategory = require('./function/category');
 const searchPizza = require('./function/search');
 
-
 dotenv.config();
 let port = process.env.PORT || 3001
 
@@ -33,7 +32,6 @@ app.get('/pizzas/:id', (req, res) => {
     let foundedId = findPizzaId(idPizza)
     res.send(JSON.stringify(foundedId));
 })
-
 
 app.listen(port, (err, res) => {
     console.log('Server Started');
